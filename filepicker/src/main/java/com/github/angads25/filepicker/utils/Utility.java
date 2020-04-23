@@ -24,6 +24,7 @@ import com.github.angads25.filepicker.model.FileListItem;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 /**<p>
  * Created by Angad Singh on 11-07-2016.
@@ -69,7 +70,7 @@ public class Utility {
             //Check for each and every directory/file in 'inter' directory.
             //Filter by extension using 'filter' reference.
 
-            for (File name : inter.listFiles(filter)) {
+            for (File name : Objects.requireNonNull(inter.listFiles(filter))) {
                 //If file/directory can be read by the Application
                 if (name.canRead()) {
                     //Create a row item for the directory list and define properties.

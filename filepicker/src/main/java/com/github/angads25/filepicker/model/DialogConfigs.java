@@ -16,7 +16,8 @@
 
 package com.github.angads25.filepicker.model;
 
-/**<p>
+/**
+ * <p>
  * Created by Angad Singh on 11-07-2016.
  * </p>
  */
@@ -54,11 +55,11 @@ public abstract class DialogConfigs {
     public static final int FILE_AND_DIR_SELECT = 2;
 
     /*  PARENT_DIRECTORY*/
-    public static final String DIRECTORY_SEPERATOR = "/";
-    public static final String STORAGE_DIR = "mnt";
+    private static final String DIRECTORY_SEPERATOR = "/";
+    private static final String STORAGE_DIR = "mnt";
 
     /*  DEFAULT_DIR is the default mount point of the SDCARD. It is the default
      *  mount point.
      */
-    public static final String DEFAULT_DIR = DIRECTORY_SEPERATOR + STORAGE_DIR;
+    static final String DEFAULT_DIR = DIRECTORY_SEPERATOR + STORAGE_DIR;
 }

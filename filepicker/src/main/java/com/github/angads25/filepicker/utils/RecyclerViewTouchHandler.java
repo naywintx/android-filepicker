@@ -16,7 +16,7 @@
 
 package com.github.angads25.filepicker.utils;
 
-/**
+/*
  * <p>
  * Created by Angad Singh on 17/01/19.
  * </p>

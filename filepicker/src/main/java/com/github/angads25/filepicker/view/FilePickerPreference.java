@@ -21,9 +21,10 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.preference.Preference;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.preference.Preference;
 
 import com.github.angads25.filepicker.R;
 import com.github.angads25.filepicker.controller.DialogSelectionListener;
@@ -67,16 +68,6 @@ public class FilePickerPreference extends Preference implements
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
         return super.onGetDefaultValue(a, index);
-    }
-
-    @Override
-    protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
-        super.onSetInitialValue(restorePersistedValue, defaultValue);
-    }
-
-    @Override
-    protected void onBindView(View view) {
-        super.onBindView(view);
     }
 
     @Override

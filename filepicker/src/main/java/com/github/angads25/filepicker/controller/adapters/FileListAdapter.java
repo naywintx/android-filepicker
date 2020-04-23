@@ -33,7 +33,6 @@ import com.github.angads25.filepicker.model.DialogProperties;
 import com.github.angads25.filepicker.model.FileListItem;
 import com.github.angads25.filepicker.model.MarkedItemList;
 import com.github.angads25.filepicker.widget.MaterialCheckbox;
-import com.github.angads25.filepicker.widget.OnCheckedChangeListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -129,21 +128,18 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
             }
         }
 
-        holder.fmark.setOnCheckedChangedListener(new OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(MaterialCheckbox checkbox, boolean isChecked) {
-                item.setMarked(isChecked);
-                if (item.isMarked()) {
-                    if (properties.selection_mode == DialogConfigs.MULTI_MODE) {
-                        MarkedItemList.addSelectedItem(item);
-                    } else {
-                        MarkedItemList.addSingleFile(item);
-                    }
+        holder.fmark.setOnCheckedChangedListener((checkbox, isChecked) -> {
+            item.setMarked(isChecked);
+            if (item.isMarked()) {
+                if (properties.selection_mode == DialogConfigs.MULTI_MODE) {
+                    MarkedItemList.addSelectedItem(item);
                 } else {
-                    MarkedItemList.removeSelectedItem(item.getLocation());
+                    MarkedItemList.addSingleFile(item);
                 }
-                notifyItemChecked.notifyCheckBoxIsClicked();
+            } else {
+                MarkedItemList.removeSelectedItem(item.getLocation());
             }
+            notifyItemChecked.notifyCheckBoxIsClicked();
         });
     }
 
@@ -157,7 +153,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
         return listItem.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         AppCompatImageView type_icon;
         AppCompatTextView name, type;
         MaterialCheckbox fmark;

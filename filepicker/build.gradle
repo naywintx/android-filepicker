@@ -25,12 +25,12 @@ ext {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 12
         versionName "1.1.1"
     }
@@ -49,14 +49,16 @@ android {
     lintOptions {
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.preference:preference:1.1.0'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 }
-
-apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/bintrayv1.gradle'
