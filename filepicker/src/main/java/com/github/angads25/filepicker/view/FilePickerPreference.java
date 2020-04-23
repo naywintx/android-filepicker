@@ -21,9 +21,10 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.preference.Preference;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.preference.Preference;
 
 import com.github.angads25.filepicker.R;
 import com.github.angads25.filepicker.controller.DialogSelectionListener;
@@ -67,16 +68,6 @@ public class FilePickerPreference extends Preference implements
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
         return super.onGetDefaultValue(a, index);
-    }
-
-    @Override
-    protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
-        super.onSetInitialValue(restorePersistedValue, defaultValue);
-    }
-
-    @Override
-    protected void onBindView(View view) {
-        super.onBindView(view);
     }
 
     @Override
@@ -141,37 +132,6 @@ public class FilePickerPreference extends Preference implements
     {   mDialog.setProperties(properties);
     }
 
-    private static class SavedState extends BaseSavedState {
-        Bundle dialogBundle;
-
-        public SavedState(Parcel source) {
-            super(source);
-            dialogBundle = source.readBundle(getClass().getClassLoader());
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            super.writeToParcel(dest, flags);
-            dest.writeBundle(dialogBundle);
-        }
-
-        public SavedState(Parcelable superState) {
-            super(superState);
-        }
-
-        @SuppressWarnings("unused")
-        public static final Creator<SavedState> CREATOR =
-        new Creator<SavedState>() {
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
-
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
-    }
-
     private void initProperties(AttributeSet attrs) {
         TypedArray tarr=getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.FilePickerPreference,0,0);
         final int N = tarr.getIndexCount();
@@ -212,5 +172,35 @@ public class FilePickerPreference extends Preference implements
             }
         }
         tarr.recycle();
+    }
+
+    private static class SavedState extends BaseSavedState {
+        @SuppressWarnings("unused")
+        public static final Creator<SavedState> CREATOR =
+        new Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
+        Bundle dialogBundle;
+
+        public SavedState(Parcel source) {
+            super(source);
+            dialogBundle = source.readBundle(getClass().getClassLoader());
+        }
+
+        public SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            super.writeToParcel(dest, flags);
+            dest.writeBundle(dialogBundle);
+        }
     }
 }

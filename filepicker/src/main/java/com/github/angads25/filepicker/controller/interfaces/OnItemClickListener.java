@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Angad Singh
+ * Copyright (C) 2019 Angad Singh
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-package com.github.angads25.filepicker.controller;
+package com.github.angads25.filepicker.controller.interfaces;
 
-/*<p>
- * Created by Angad Singh on 11-07-2016.
- * </p>
- */
+import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * Interface definition for a callback to be invoked
- * when a checkbox is checked.
+ * <p>
+ * Created by Angad Singh on 17/01/19.
+ * </p>
  */
-public interface NotifyItemChecked {
-
-    /**
-     * Called when a checkbox is checked.
-     */
-    void notifyCheckBoxIsClicked();
+public interface OnItemClickListener {
+    void onClick(RecyclerView parent, View v, int position);
 }

@@ -64,19 +64,15 @@ public class MaterialCheckbox extends View {
         tick = new Path();
         paint = new Paint();
         bounds = new RectF();
-        OnClickListener onClickListener = new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setChecked(!checked);
-                onCheckedChangeListener.onCheckedChanged(MaterialCheckbox.this, isChecked());
-            }
+        OnClickListener onClickListener = v -> {
+            setChecked(!checked);
+            onCheckedChangeListener.onCheckedChanged(MaterialCheckbox.this, isChecked());
         };
 
         setOnClickListener(onClickListener);
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if(isChecked()) {
