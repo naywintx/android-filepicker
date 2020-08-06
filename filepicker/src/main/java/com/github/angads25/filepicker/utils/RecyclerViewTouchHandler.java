@@ -23,10 +23,12 @@ package com.github.angads25.filepicker.utils;
  */
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.github.angads25.filepicker.R;
 import com.github.angads25.filepicker.controller.interfaces.OnItemClickListener;
 import com.github.angads25.filepicker.controller.interfaces.OnItemLongClickListener;
 
@@ -64,6 +66,21 @@ public class RecyclerViewTouchHandler implements RecyclerView.OnItemTouchListene
     @Override
     public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
         View child = rv.findChildViewUnder(e.getX(), e.getY());
+
+        View checkBox = child != null ? child.findViewById(R.id.file_mark) : null;
+        if (checkBox != null) {
+            Rect rect = new Rect();
+            checkBox.getHitRect(rect);
+            rect.top += child.getTop();
+            rect.bottom += child.getTop();
+            int x = (int) (e.getX() + .5f);
+            int y = (int) (e.getY() + .5f);
+            if (rect.contains(x, y)) {
+                //event will be consumed by checkbox
+                return false;
+            }
+        }
+
         if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
             clickListener.onClick(rv, child, rv.getChildAdapterPosition(child));
             return true;
